@@ -40,10 +40,11 @@ class Admin extends Model
             'name' => $aPostData['name'],
             'email' => $aPostData['email'],
             'phone' => $aPostData['phone'],
+            'is_favourite' => 0,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => ''
         ];
-        $sSql = 'INSERT INTO contacts VALUES (:id, :name, :email, :phone, :created_at, :updated_at)';
+        $sSql = 'INSERT INTO contacts VALUES (:id, :name, :email, :phone, :is_favourite :created_at, :updated_at)';
         $this->oDb->query($sSql, $aTableData);
     }
 

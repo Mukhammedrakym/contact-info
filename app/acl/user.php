@@ -10,7 +10,9 @@ return [
         'contacts',
         'favourites',
         'save-contact-to-favourites',
-        'saveContactToFavourites'
+        'saveContactToFavourites',
+        'delete-contact-from-favourites',
+        'deleteContactFromFavourites',
     ],
     'admin' => [
         'contacts',

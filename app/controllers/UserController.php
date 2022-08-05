@@ -49,11 +49,14 @@ class UserController extends Controller
     }
 
     public function contactsAction() {
+        $sUserId = $_SESSION['auth']['user_id'];
         $oMain = new Main;
         $oPagination = new Pagination($this->aRouteParams, $oMain->contactsCount());
         $aData = [
             'pagination' => $oPagination->get(),
+           // 'aContacts' => $this->oModel->getAllContacts($sUserId, $this->aRouteParams),
             'aContacts' => $oMain->contactsList($this->aRouteParams),
+            'aFavourites' => $this->oModel->getFavouriteContacts($sUserId),
         ];
         $this->oView->render('Contacts', $aData);
 

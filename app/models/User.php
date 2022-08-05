@@ -109,5 +109,24 @@ class User extends Model
             'contact_id' => $aPostData['contact_id'],
         ];
         $this->oDb->query('DELETE FROM favourites WHERE user_id = :user_id AND contact_id = :contact_id', $aParams);
+        $this->setValueColumnIsFavourite($aPostData['user_id'], $aPostData['contact_id'], 0);
+    }
+
+    public function setValueColumnIsFavourite($sUserId, $sContactsId, $isFavourite) {
+        $aParams = [
+            'contact_id' => $sContactsId,
+            'is_favourite' => $isFavourite,
+            'user_id' => $sUserId
+        ];
+        $this->oDb->query('UPDATE contacts SET is_favourite = :is_favourite WHERE id IN (SELECT contact_id FROM favourites WHERE user_id = :user_id AND contact_id = :contact_id)', $aParams);
+    }
+
+    public function getAllContacts($sUserId, $aRouteParams) {
+        $iMax = 10;
+        $aParams = [
+            'max' => $iMax,
+            'start' => (((isset($aRouteParams['page']) ? $aRouteParams['page'] : 1) - 1) * $iMax),
+        ];
+        return $this->oDb->row('SELECT * FROM contacts ORDER BY id DESC LIMIT :start, :max', $aParams);
     }
 }
