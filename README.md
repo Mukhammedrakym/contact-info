@@ -1,20 +1,22 @@
 # contact-info
 Own MVC Framework
 
-Functionals:
+Database: MySQL
+Local Server: xampp
 
+Functionals:
 Main Page:
 -Contacts
 -About me
 
 For User:
--Registration
--Authorization
--View all contacts
--Save contacts to favourites
+-Registration {/register}
+-Authorization (/login)
+-View all contacts /user/contacts
+-Save contacts to favourites (/user/favourites)
 
 For Admin:
--Authorization
--Create Contact
--Edit Contact
--Delete Contacts
+-Authorization /admin/login
+-Create Contact (admin/contacts/create)
+-Edit Contact (admin/contacts/edit/{id})
+-Delete Contacts (admin/contacts/delete/{id})
