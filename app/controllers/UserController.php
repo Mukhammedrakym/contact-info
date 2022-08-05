@@ -42,7 +42,6 @@ class UserController extends Controller
                 $this->oView->message('error', 'Request processing error');
             }
             $_SESSION['auth']['user_id'] = $sUserId;
-            //$this->oView->message('success', 'Success registration');
             $this->oView->location('user/contacts');
         }
         $this->oView->render('Registration');
@@ -54,7 +53,6 @@ class UserController extends Controller
         $oPagination = new Pagination($this->aRouteParams, $oMain->contactsCount());
         $aData = [
             'pagination' => $oPagination->get(),
-           // 'aContacts' => $this->oModel->getAllContacts($sUserId, $this->aRouteParams),
             'aContacts' => $oMain->contactsList($this->aRouteParams),
             'aFavourites' => $this->oModel->getFavouriteContacts($sUserId),
         ];
